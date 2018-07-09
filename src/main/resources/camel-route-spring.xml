@@ -11,8 +11,8 @@
 	 </bean>--> 
     
     <!-- AciveMQ with Connection Pool -->
-    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-       <property name="brokerURL" value="failover:(tcp://${activemq.hostname:127.0.0.1}:61616)?randomize=false" />
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory">
+       <property name="brokerURL" value="failover:(tcp://${activemq.hostname:127.0.0.1}:61616)" />
     </bean>
 	 
 	<bean primary="true" id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" 
@@ -30,6 +30,15 @@
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
 	    <property name="configuration" ref="jmsConfig"/>
 	</bean>
+<!--     
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/cameldb" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+     -->
     
     <!-- Redis Configuration 
     <bean id="redisConnectionFactory" 

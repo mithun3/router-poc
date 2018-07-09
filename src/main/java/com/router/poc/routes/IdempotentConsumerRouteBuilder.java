@@ -19,19 +19,19 @@ public class IdempotentConsumerRouteBuilder extends RouteBuilder implements Rout
     	/*
     	 * Route errors to DLQ after one retry and one second delay
     	 */
-    	errorHandler(deadLetterChannel("activemq:unique.dead").
-    			maximumRedeliveries(1).redeliveryDelay(1000));
+//    	errorHandler(deadLetterChannel("activemq:unique.dead").
+//    			maximumRedeliveries(1).redeliveryDelay(1000));
     	
     	/*
     	 * Idempotent Consumer - In Memory 
     	 * - requires uniqueId - GUUD
     	 * Cannot use with competing consumer
     	 */
-    	from("activemq:unique.order").
-    		idempotentConsumer(header("uniqueId"),
-    		MemoryIdempotentRepository.memoryIdempotentRepository(200)).
-		to("activemq:magic.order");
-    	
+//    	from("activemq:unique.order").
+//    		idempotentConsumer(header("uniqueId"),
+//    		MemoryIdempotentRepository.memoryIdempotentRepository(200)).
+//		to("activemq:magic.order");
+//    	
     	/*
     	 * Idempotent Consumer - Redis
     	 * - requires uniqueId - GUUD
