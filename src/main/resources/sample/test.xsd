@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.contoso.com/books" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="bookstore">
+<xs:schema attributeFormDefault="unqualified" 
+		   elementFormDefault="qualified" 
+		   targetNamespace="http://www.xyz.com/req" 
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="payment">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="unbounded" name="book">
+                <xs:element maxOccurs="unbounded" name="request">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="title" type="xs:string" />
-                            <xs:element name="author">
+                            <xs:element name="requestId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="originId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="someId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="from">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element minOccurs="0" name="name" type="xs:string" />
-                                        <xs:element minOccurs="0" name="first-name" type="xs:string" />
-                                        <xs:element minOccurs="0" name="last-name" type="xs:string" />
+                                        <xs:element minOccurs="1" maxOccurs="1" name="first-name" type="xs:string" />
+                                        <xs:element minOccurs="1" maxOccurs="1" name="last-name" type="xs:string" />
+                                        <xs:element minOccurs="1" maxOccurs="1" name="acnum" type="xs:string" />
+                                        <xs:element minOccurs="1" maxOccurs="1" name="branch" type="xs:string" />
+                                        <xs:element minOccurs="1" maxOccurs="1" name="type" type="xs:string" />
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="price" type="xs:decimal" />
+                            <xs:element name="to">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="1" maxOccurs="1" name="first-name" type="xs:string" />
+                                        <xs:element minOccurs="1" maxOccurs="1" name="last-name" type="xs:string" />
+                                        <xs:element minOccurs="1" maxOccurs="1" name="acnum" type="xs:string" />
+                                        <xs:element minOccurs="1" maxOccurs="1" name="branch" type="xs:string" />
+                                        <xs:element minOccurs="1" maxOccurs="1" name="type" type="xs:string" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>                            
+                            <xs:element name="amount" type="xs:decimal" />
                         </xs:sequence>
-                        <xs:attribute name="genre" type="xs:string" use="required" />
-                        <xs:attribute name="publicationdate" type="xs:date" use="required" />
-                        <xs:attribute name="ISBN" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="transactionDate" type="xs:date" use="required" />
+                        <xs:attribute name="code" type="xs:string" use="required" />
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
