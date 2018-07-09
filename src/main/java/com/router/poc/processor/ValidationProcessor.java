@@ -13,12 +13,9 @@ import javax.xml.validation.SchemaFactory;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
@@ -32,8 +29,6 @@ public class ValidationProcessor implements Processor {
 	
 	private Map<String, Schema> schemaMap = new HashMap<>();
 	
-	private ResourceLoader resourceLoader;
-
 	@Override
 	public void process(Exchange exchange) throws RouterException, SAXException, IOException {
 		
