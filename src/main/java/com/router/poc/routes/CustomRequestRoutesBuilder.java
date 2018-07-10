@@ -46,7 +46,7 @@ public class CustomRequestRoutesBuilder extends RouteBuilder implements RoutesBu
 					.end()
 					.to("activemq:payment.request.failed");
 				
-				from("activemq:payment.request")
+				from("activemq:payment.request").threads(10)
 					.log("Obtained the message from payment.request queue")
 					.setProperty("ROUTE_PATH", constant("REQUEST"))
 					.process(metricsInitProcessor)
@@ -58,7 +58,7 @@ public class CustomRequestRoutesBuilder extends RouteBuilder implements RoutesBu
 					.multicast()
 					.process(metricsCompleteProcessor)
 					.to("activemq:payment.request.acknowledge") //write some logic to carryout acknowledgement
-					.to("activemq:payment.request.processed.mirror");
+					.to("activemq:payment.request.acknowledge.mirror");
 		
 	}
 }

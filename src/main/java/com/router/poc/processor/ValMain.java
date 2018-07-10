@@ -14,7 +14,7 @@ import org.springframework.core.io.Resource;
 import org.xml.sax.SAXException;
 
 public class ValMain {
-	public static void main(String[] args) throws SAXException, IOException {
+	public void main(String[] args) throws SAXException, IOException {
 		final Resource resource = new ClassPathResource("sample/test.xsd");//resourceLoader.getResource("classpath:sample/test.xsd");
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		Schema schema = schemaFactory.newSchema(new StreamSource(resource.getInputStream()));
