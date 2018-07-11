@@ -4,14 +4,48 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
-    
-	 <!-- ActiveMQ without Connection Pool    
-	 <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
-	    <property name="brokerURL" value="tcp://localhost:61616"/>
-	 </bean>--> 
+
+
+
+	<bean id="Solace.JndiTemplate"
+		class="org.springframework.jndi.JndiTemplate">
+		<property name="environment">
+			<props>
+				<prop key="java.naming.provider.url">tcp://vmr-mr8v6yiwihbb.messaging.solace.cloud:20544</prop>
+				<prop key="java.naming.factory.initial">com.solacesystems.jndi.SolJNDIInitialContextFactory
+				</prop>
+				<prop key="java.naming.security.principal">solace-cloud-client@msgvpn-8mqb130f73</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="Solace.JndiObjectFactoryBean"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiTemplate" ref="Solace.JndiTemplate" />
+		<property name="jndiName" value="JNDI/CF/fuse" />
+	</bean>
+	<bean id="Solace.CachedConnectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<property name="targetConnectionFactory"
+			ref="Solace.JndiObjectFactoryBean" />
+		<property name="sessionCacheSize" value="10" />
+	</bean>
+	<bean id="Solace.JndiDestinationResolver"
+		class="org.springframework.jms.support.destination.JndiDestinationResolver">
+		<property name="jndiTemplate" ref="Solace.JndiTemplate" />
+		<property name="cache" value="true" />
+	</bean>
+	<bean id="Solace.JmsComponent"
+		class="org.apache.camel.component.jms.JmsComponent">
+		<property name="connectionFactory"
+			ref="Solace.CachedConnectionFactory" />
+		<property name="destinationResolver"
+			ref="Solace.JndiDestinationResolver" />
+	</bean>
+        
+        
     
     <!-- AciveMQ with Connection Pool -->
-    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory">
+ <!--    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory">
        <property name="brokerURL" value="failover:(tcp://${activemq.hostname:127.0.0.1}:61616)" />
     </bean>
 	 
@@ -29,26 +63,6 @@
 	 
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
 	    <property name="configuration" ref="jmsConfig"/>
-	</bean>
-<!--     
-    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost/cameldb" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
-	</bean>
-     -->
-    
-    <!-- Redis Configuration 
-    <bean id="redisConnectionFactory" 
-        class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-       <property name="hostName" value="localhost"/>
-       <property name="port" value="6379"/>        
-    </bean>
-    
-    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
-        <property name="connectionFactory" ref="redisConnectionFactory"/>
-    </bean> -->
-     	                           
+	</bean> -->
+               
 </beans>

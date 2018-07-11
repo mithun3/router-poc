@@ -101,6 +101,22 @@
 			<artifactId>activemq-pool</artifactId>
 		</dependency>
 
+
+ <!-- https://mvnrepository.com/artifact/com.solace.camel.component/camel-solace-jms -->
+<!--<dependency>
+    <groupId>com.solace.camel.component</groupId>
+    <artifactId>camel-solace-jms</artifactId>
+    <version>1.0.0</version>
+</dependency>
+ -->
+
+<!-- https://mvnrepository.com/artifact/com.solace.camel.component/camel-solace-jms -->
+<dependency>
+    <groupId>com.solace.camel.component</groupId>
+    <artifactId>camel-solace-jms</artifactId>
+    <version>0.1.23</version>
+</dependency>
+
 		<!-- testing -->
 		<dependency>
 			<groupId>org.apache.camel</groupId>
