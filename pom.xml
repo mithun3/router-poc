@@ -102,21 +102,21 @@
 		</dependency>
 
 
- <!-- https://mvnrepository.com/artifact/com.solace.camel.component/camel-solace-jms -->
-<!--<dependency>
-    <groupId>com.solace.camel.component</groupId>
-    <artifactId>camel-solace-jms</artifactId>
-    <version>1.0.0</version>
-</dependency>
- -->
+		<!-- https://mvnrepository.com/artifact/com.solace.camel.component/camel-solace-jms -->
+		<!--<dependency> <groupId>com.solace.camel.component</groupId> <artifactId>camel-solace-jms</artifactId> 
+			<version>1.0.0</version> </dependency> -->
 
-<!-- https://mvnrepository.com/artifact/com.solace.camel.component/camel-solace-jms -->
-<dependency>
-    <groupId>com.solace.camel.component</groupId>
-    <artifactId>camel-solace-jms</artifactId>
-    <version>0.1.23</version>
-</dependency>
-
+		<!-- https://mvnrepository.com/artifact/com.solace.camel.component/camel-solace-jms -->
+		<dependency>
+			<groupId>com.solace.camel.component</groupId>
+			<artifactId>camel-solace-jms</artifactId>
+			<version>0.1.23</version>
+		</dependency>
+		<dependency>
+			<groupId>com.solacesystems</groupId>
+			<artifactId>sol-jms</artifactId>
+			<version>10.2.1</version>
+		</dependency>
 		<!-- testing -->
 		<dependency>
 			<groupId>org.apache.camel</groupId>
@@ -145,9 +145,9 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-lang3</artifactId>
-		    <version>3.0</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.0</version>
 		</dependency>
 
 	</dependencies>

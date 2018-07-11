@@ -6,8 +6,8 @@
         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
 
-
-	<bean id="Solace.JndiTemplate"
+	<!-- Use this in case of Solace -->
+	<!-- <bean id="Solace.JndiTemplate"
 		class="org.springframework.jndi.JndiTemplate">
 		<property name="environment">
 			<props>
@@ -41,11 +41,11 @@
 		<property name="destinationResolver"
 			ref="Solace.JndiDestinationResolver" />
 	</bean>
-        
+         -->
         
     
     <!-- AciveMQ with Connection Pool -->
- <!--    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory">
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory">
        <property name="brokerURL" value="failover:(tcp://${activemq.hostname:127.0.0.1}:61616)" />
     </bean>
 	 
@@ -63,6 +63,6 @@
 	 
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
 	    <property name="configuration" ref="jmsConfig"/>
-	</bean> -->
+	</bean>
                
 </beans>
